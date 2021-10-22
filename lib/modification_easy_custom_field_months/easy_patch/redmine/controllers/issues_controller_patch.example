@@ -1,0 +1,30 @@
+module ModificationEasyCustomFieldMonths
+  module IssuesControllerPatch
+
+    def self.included(base)
+      base.extend(ClassMethods)
+      base.send(:include, InstanceMethods)
+
+      base.class_eval do
+
+        alias_method_chain :index, :modification_easy_custom_field_months
+
+      end
+    end
+
+    module InstanceMethods
+
+      def index_with_modification_easy_custom_field_months
+        index_without_modification_easy_custom_field_months
+      end
+
+    end
+
+    module ClassMethods
+
+    end
+
+  end
+
+end
+RedmineExtensions::PatchManager.register_controller_patch 'IssuesController', 'ModificationEasyCustomFieldMonths::IssuesControllerPatch'

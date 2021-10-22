@@ -1,0 +1,10 @@
+en:
+  label: Hello
+  label_filter_group_custom_fields: Custom fields
+  label_month_select: Month
+  modification_easy_issue_query_name: ModifCust
+  field_base_month: Base month
+  field_is_efficient: Efficient
+  field_kpi_ratio: KPI ratio
+  field_managers_notes: Manager's notes
+  field_partner_id: Partner ID
