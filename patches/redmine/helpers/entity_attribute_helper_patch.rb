@@ -17,17 +17,15 @@ module ModificationEasyPatch
 
         case attribute.name
         when :partner_id
-
+          entity_multieditable_tag(entity_class, 'partner_id', h(value), options, { :value => unformatted_value.to_s, :type => 'text' })
         when :kpi_ratio
-          float_num = unformatted_value.to_f
-          n         = float_num > 100 ? -1 : float_num
-          format_number(n, "%d %%" % float_num)
+          entity_multieditable_tag(entity_class, 'kpi_ratio', h(value), options, { :value => unformatted_value.to_s, :type => 'text' })
         when :is_efficient
-
+          entity_multieditable_tag(entity_class, 'is_efficient', h(value), options, { :value => unformatted_value.to_s, :type => 'select', :source => boolean_source })
         when :base_month
-          entity_multieditable_tag(entity_class, 'base_month', h(value), options, { :value => unformatted_value.to_s, :type => 'dateui' })
+          entity_multieditable_tag(entity_class, 'base_month', h(value), options, { :value => unformatted_value.to_s, :type => 'select' })
         when :managers_notes
-          textilizable(value)
+          entity_multieditable_tag(entity_class, 'managers_notes', h(value), options, { :value => unformatted_value.to_s, :type => 'textarea' })
         else
           format_html_issue_attribute_without_modification_easy_patch(entity_class, attribute, unformatted_value, options)
         end

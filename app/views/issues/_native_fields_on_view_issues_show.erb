@@ -1,0 +1,41 @@
+<%=
+  rows.left l(:field_partner_id), @issue.partner_id, class: 'partner', text_options: {
+    class: ('multieditable' if @issue.safe_attribute?('partner_id')),
+    'data-name' => 'issue[partner_id]',
+    'data-value' => @issue.partner_id,
+    'data-type' => 'text'#,
+    #'data-source' => easy_autocomplete_path('allowed_issue_statuses', issue_id: @issue)
+  }
+
+  rows.right l(:field_kpi_ratio), @issue.kpi_ratio, class: "kpi_ratio", text_options: {
+    class: ('multieditable' if @issue.safe_attribute?('kpi_ratio')),
+    'data-name' => 'issue[kpi_ratio]',
+    'data-value' => @issue.kpi_ratio,
+    'data-type' => 'text'
+  }
+
+  rows.left l(:field_base_month), @issue.base_month, class: "base_month", text_options: {
+    class: ('multieditable' if @issue.safe_attribute?('base_month')),
+    'data-name' => 'issue[base_month]',
+    'data-value' => @issue.base_month,
+    'date-format' => 'base_month',
+    'data-type' => 'select',
+    'data-source' =>  Date::MONTHNAMES #I18n.t('date.month_names').reject(&:blank?)
+  }
+
+  rows.right l(:field_is_efficient), @issue.is_efficient, class: "is_efficient", text_options: {
+    class: ('multieditable' if @issue.safe_attribute?('is_efficient')),
+    'data-name' => 'issue[is_efficient]',
+    'data-value' => @issue.is_efficient,
+    'data-type' => 'select',
+    'data-source' => boolean_source
+  }
+
+  rows.left l(:field_managers_notes), @issue.managers_notes, class: "managers_notes", text_options: {
+    class: ('multieditable' if @issue.safe_attribute?('managers_notes')),
+    'data-name' => 'issue[managers_notes]',
+    'data-value' => @issue.managers_notes,
+    'data-type' => 'textarea'
+  }
+%>
+
