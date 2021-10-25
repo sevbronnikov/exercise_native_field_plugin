@@ -1,4 +1,4 @@
-module ModificationEasyPatch
+module ModificationEasyCustomFieldMonths
   module EasyIssueQueryPatch
 
     def self.included(base)
@@ -7,16 +7,16 @@ module ModificationEasyPatch
 
       base.class_eval do
 
-        alias_method_chain :initialize_available_filters, :modification_easy_patch
-        alias_method_chain :initialize_available_columns, :modification_easy_patch
+        alias_method_chain :initialize_available_filters, :modification_easy_custom_field_months
+        alias_method_chain :initialize_available_columns, :modification_easy_custom_field_months
 
       end
     end
 
     module InstanceMethods
 
-      def initialize_available_filters_with_modification_easy_patch
-        initialize_available_filters_without_modification_easy_patch
+      def initialize_available_filters_with_modification_easy_custom_field_months
+        initialize_available_filters_without_modification_easy_custom_field_months
 
         group = l(:modification_easy_issue_query_name)
         on_filter_group(group) do
@@ -28,11 +28,12 @@ module ModificationEasyPatch
         end
       end
 
-      def initialize_available_columns_with_modification_easy_patch
-        initialize_available_columns_without_modification_easy_patch
+      def initialize_available_columns_with_modification_easy_custom_field_months
+        initialize_available_columns_without_modification_easy_custom_field_months
 
         group = l(:modification_easy_issue_query_name)
-        @available_columns << EasyQueryColumn.new(:partner_id, sortable: "#{Issue.table_name}.partner_id", group: group)
+        @available_columns << EasyQueryColumn.new(:partner_id, sortable: "#{Issue.table_name}.partner_id", groupable: "#{Issue.table_name}.name",
+                                                  group: group, most_used: true)
         @available_columns << EasyQueryColumn.new(:kpi_ratio, sortable: "#{Issue.table_name}.kpi_ratio", group: group, numeric: true, no_progress_bar: true)
         @available_columns << EasyQueryColumn.new(:is_efficient, sortable: "#{Issue.table_name}.is_efficient", group: group)
         @available_columns << EasyQueryColumn.new(:base_month, sortable: "#{Issue.table_name}.base_month", group: group)
@@ -45,5 +46,4 @@ module ModificationEasyPatch
     end
   end
 end
-EasyExtensions::PatchManager.register_model_patch 'EasyIssueQuery', 'ModificationEasyPatch::EasyIssueQueryPatch'
-
+EasyExtensions::PatchManager.register_model_patch 'EasyIssueQuery', 'ModificationEasyCustomFieldMonths::EasyIssueQueryPatch'

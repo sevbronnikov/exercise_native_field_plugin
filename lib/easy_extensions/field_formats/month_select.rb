@@ -1,5 +1,5 @@
-module ModificationEasyPatch
-  module FieldFormatsPatch
+module ModificationEasyCustomFieldMonths
+  module FieldFormats
 
     class MonthSelect < Redmine::FieldFormat::ListFormat
       add 'month_select'

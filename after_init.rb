@@ -1,4 +1,3 @@
-Dir[File.dirname(__FILE__) + '/lib/modification_easy_custom_field_months/easy_patch/**/*.rb'].each {|file| require_dependency file }
 Dir[File.dirname(__FILE__) + '/extra/easy_patch/**/*.rb'].each { |file| require_dependency file }
 
 # this block is executed once just after Redmine is started

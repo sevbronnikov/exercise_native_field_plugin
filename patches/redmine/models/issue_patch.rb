@@ -1,16 +1,11 @@
-module ModificationEasyPatch
-  module ModificationIssuePatch
+module ModificationEasyCustomFieldMonths
+  module IssuePatch
 
     def self.included(base)
       base.extend(ClassMethods)
       base.include(InstanceMethods)
 
       base.class_eval do
-        #  alias_method_chain
-
-        belongs_to :status, :class_name => 'IssueStatus'
-
-
         belongs_to :partner, :class_name => "User", foreign_key: :partner_id
 
         safe_attributes('partner_id',
@@ -31,4 +26,4 @@ module ModificationEasyPatch
     end
   end
 end
-EasyExtensions::PatchManager.register_model_patch 'Issue', 'ModificationEasyPatch::ModificationIssuePatch'
+EasyExtensions::PatchManager.register_model_patch 'Issue', 'ModificationEasyCustomFieldMonths::IssuePatch'

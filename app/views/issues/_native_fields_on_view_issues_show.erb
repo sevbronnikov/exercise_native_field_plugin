@@ -11,7 +11,7 @@
     class: ('multieditable' if @issue.safe_attribute?('kpi_ratio')),
     'data-name' => 'issue[kpi_ratio]',
     'data-value' => @issue.kpi_ratio,
-    'data-type' => 'text'
+    'data-type' => 'numeric'
   }
 
   rows.left l(:field_base_month), @issue.base_month, class: "base_month", text_options: {
